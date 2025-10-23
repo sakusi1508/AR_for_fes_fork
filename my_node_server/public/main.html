@@ -4,6 +4,7 @@
         <meta charset="UTF-8">
         <title>川野邊研究室 // 研究テーマ発表会</title>
         
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
         <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
         
         <style>
@@ -16,28 +17,49 @@
                 height: 100vh;
                 overflow-x: hidden;
                 
-                /* 背景画像の設定 (mediabox.pngを同じフォルダに配置してください) */
-                background-image: url('mediabox.png'); 
-                background-size: cover;
-                background-position: center;
-                background-attachment: fixed; /* パララックス効果の核 */
+                /* 美しいグラデーション背景 */
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                background-attachment: fixed;
                 
-                /* Windows向けプログラミングフォント */
-                font-family: 'Consolas', 'Courier New', monospace; 
+                /* アニメーション背景パターン */
+                position: relative;
+            }
+            
+            /* アニメーション背景パターン */
+            body::before {
+                content: '';
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+                            radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+                            radial-gradient(circle at 40% 80%, rgba(120, 219, 255, 0.3) 0%, transparent 50%);
+                animation: backgroundMove 20s ease-in-out infinite;
+                z-index: -1;
+            }
+            
+            @keyframes backgroundMove {
+                0%, 100% { transform: translate(0, 0) rotate(0deg); }
+                33% { transform: translate(30px, -30px) rotate(120deg); }
+                66% { transform: translate(-20px, 20px) rotate(240deg); }
             }
 
             /* ★★★ コンテンツラッパー：背景の上に重ねてスクロールさせる ★★★ */
             .content-wrapper {
-                /* 不透明度0.98で設定。画像をわずかに透かしつつ、文字の視認性を確保 */
-                background-color: rgba(255, 255, 255, 0.70); 
-                min-height: 200vh; /* スクロール領域を確保 */
+                /* ガラスモーフィズム効果 */
+                background: rgba(255, 255, 255, 0.1);
+                backdrop-filter: blur(20px);
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                min-height: 200vh;
                 padding: 80px 40px;
-                color: #333333;
+                color: #ffffff;
                 text-align: center;
                 position: relative;
                 z-index: 1;
-                /* Windows向けモダンフォントに上書き */
-                font-family: 'Helvetica Neue', 'Arial', 'Noto Sans JP', sans-serif; 
+                /* モダンフォント */
+                font-family: 'Inter', 'Helvetica Neue', 'Arial', 'Noto Sans JP', sans-serif; 
             }
 
 
@@ -45,33 +67,48 @@
             /* ヘッディング＆タイピングアニメーション */
             /* ------------------------------------------- */
             h1 {
-                font-size: 2.8em;
-                color: #000000;
-                font-weight: 700;
-                letter-spacing: 1px;
-                margin-bottom: 10px;
+                font-size: 3.2em;
+                color: #ffffff;
+                font-weight: 800;
+                letter-spacing: 2px;
+                margin-bottom: 20px;
                 margin-top: 0;
+                text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+                animation: titleGlow 3s ease-in-out infinite alternate;
+            }
+            
+            @keyframes titleGlow {
+                from { text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3), 0 0 30px rgba(255, 255, 255, 0.1); }
+                to { text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3), 0 0 40px rgba(255, 255, 255, 0.3); }
             }
 
             #main-typing-container {
                 min-height: 40px;
                 margin-bottom: 80px;
+                padding: 20px;
+                border-radius: 15px;
+                background: rgba(255, 255, 255, 0.05);
+                backdrop-filter: blur(10px);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                display: inline-block;
             }
 
             h2 {
-                font-size: 1.5em;
-                color: #555555;
+                font-size: 1.6em;
+                color: rgba(255, 255, 255, 0.9);
                 font-weight: 400;
                 margin: 0;
                 display: inline;
+                text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
             }
 
             /* iTypedカーソルスタイル */
             .ityped-cursor {
-                font-size: 1.5em;
+                font-size: 1.6em;
                 opacity: 1;
                 animation: blink 0.7s infinite;
-                color: #007AFF;
+                color: #00d4ff;
+                text-shadow: 0 0 10px #00d4ff;
             }
             @keyframes blink {
                 0% { opacity: 1; }
@@ -82,53 +119,96 @@
             /* ------------------------------------------- */
             /* レイアウト調整：ボタン間隔と整列 */
             /* ------------------------------------------- */
+
+            /* ------------------------------------------- */
+            /* ボタンリンク：モダン＆ミニマルデザイン (サイズ統一) */
+            /* ------------------------------------------- */
+            .button-link {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                
+                margin: 25px;
+                
+                /* サイズを固定 */
+                min-width: 380px; 
+                height: 160px;
+                
+                /* モダンなガラスモーフィズムボタン */
+                background: rgba(255, 255, 255, 0.15);
+                backdrop-filter: blur(10px);
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                border-radius: 20px;
+                
+                color: #ffffff;
+                text-decoration: none;
+                cursor: pointer;
+                font-size: 1.3em;
+                font-weight: 600;
+                letter-spacing: 0.8px;
+                text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+                
+                /* アニメーション設定 */
+                transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+                position: relative;
+                overflow: hidden;
+            }
+            
+            /* ボタンホバーエフェクト */
+            .button-link::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+                transition: left 0.5s;
+            }
+            
+            .button-link:hover::before {
+                left: 100%;
+            }
+
+            .button-link:hover {
+                background: rgba(255, 255, 255, 0.25);
+                border-color: rgba(255, 255, 255, 0.4);
+                
+                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 0 20px rgba(255, 255, 255, 0.1);
+                transform: translateY(-8px) scale(1.02);
+            }
+            
+            /* ボタンクリックエフェクト */
+            .button-link:active {
+                transform: translateY(-4px) scale(0.98);
+                transition: all 0.1s;
+            }
+            
+            /* スクロール時の視覚効果 */
             .theme-links {
                 display: flex;
                 flex-wrap: wrap; 
                 justify-content: center; 
                 max-width: 1400px; 
                 margin: 0 auto;
+                padding: 40px 0;
             }
-
-            /* ------------------------------------------- */
-            /* ボタンリンク：モダン＆ミニマルデザイン (サイズ統一) */
-            /* ------------------------------------------- */
-            .button-link {
-                display: flex; /* サイズ統一のためのflex設定 */
-                align-items: center; /* 垂直方向の中央揃え */
-                justify-content: center; /* 水平方向の中央揃え */
-                text-align: center;
-                
-                /* padding: 25px 40px; を削除または調整 */
-                margin: 25px;
-                
-                /* サイズを固定 */
-                min-width: 350px; 
-                height: 140px; /* ★★★ 最大文字サイズに合わせて高さを固定 ★★★ */
-                
-                /* ベースデザイン */
-                background-color: #F5F5F5;
-                color: #000000;
-                border: 1px solid #EEEEEE;
-                border-radius: 8px;
-                
-                text-decoration: none;
-                cursor: pointer;
-                font-size: 1.2em;
-                font-weight: 500;
-                letter-spacing: 0.5px;
-                
-                /* アニメーション設定 */
-                transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            
+            /* ページロード時のフェードイン効果 */
+            .content-wrapper {
+                animation: fadeInUp 1s ease-out;
             }
-
-            .button-link:hover {
-                background-color: #FFFFFF;
-                color: #000000;
-                border-color: #007AFF;
-                
-                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-                transform: translateY(-3px);
+            
+            @keyframes fadeInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(30px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
             }
         </style>
     </head>
