@@ -99,7 +99,11 @@
                 font-weight: 400;
                 margin: 0;
                 display: inline;
+<<<<<<< Updated upstream
                 text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+=======
+                white-space: pre-wrap;
+>>>>>>> Stashed changes
             }
 
             /* iTypedカーソルスタイル */
@@ -245,7 +249,7 @@
             window.onload = function() {
                 // iTyped 初期化 (1分間停止設定を含む)
                 const strings = [
-                    "// 研究テーマの選択を待機しています。テーマを選択してください。",
+                    "// 研究テーマの選択を待機しています。<br>テーマを選択してください。",
                 ];
 
                 ityped.init(document.querySelector("#main-typing"), {
